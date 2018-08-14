@@ -1,6 +1,6 @@
 import * as types from './mutation-types'
 
-const matations = {
+const mutations = {
 	[types.SET_SINGER](state, singer) {
 		state.singer = singer
 	},
@@ -20,8 +20,8 @@ const matations = {
 		state.mode = mode
 	},
 	[types.SET_CURRENT_INDEX](state, index) {
-		state.index = index
+		state.currentIndex = index
 	}
 }
 
-export default matations
+export default mutations
