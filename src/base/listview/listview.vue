@@ -19,7 +19,7 @@
 		<div class="list-shortcut" @touchstart.stop.prevent="onShortcutTouchStart" @touchmove.stop.prevent="onShortcutTouchMove">
 			<ul>
 				<li v-for="(item,index) in shortcutList" 
-					class="item" 
+					class="item"
 					:class="{'current' : currentIndex===index}" 
 					:data-index="index">
 					{{item}}
@@ -116,7 +116,7 @@
 				this.$refs.listview.scrollToElement(this.$refs.listGroup[index], 0)
 			},
 			_calculateHeight() {
-				// 创建一个高度数组用来保存左侧各部分列表的高度
+				// 创建一个数组用来保存左侧各部分列表的clientHeight
 				this.listHeight = []
 				const list = this.$refs.listGroup
 				let height = 0
@@ -126,6 +126,7 @@
 					height += item.clientHeight
 					this.listHeight.push(height)
 				}
+				// console.log(this.listHeight)
 			}
 		},
 		watch: {
@@ -140,7 +141,7 @@
 
 				// 当滚动到顶部时,newY>0
 				if (newY > 0) {
-					this.currentIndex =0
+					this.currentIndex = 0
 					return
 				}
 

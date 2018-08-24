@@ -70,7 +70,7 @@
 					width += sliderWidth
 				}
 
-				if(this.loop & !isResize) {
+				if(this.loop && !isResize) {
 					width += 2*sliderWidth
 				}
 				this.$refs.sliderGroup.style.width = width + 'px'

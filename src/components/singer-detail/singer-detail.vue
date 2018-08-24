@@ -41,25 +41,27 @@
 					if (res.code === ERR_OK) {
 						// console.log(res.data.list)
 						this.songs = this._normalizeSongs(res.data.list)
-						console.log(this.songs)
 					}
 				})
 			},
 			_normalizeSongs(list) {
 				let ret = []
 				list.forEach((item) => {
+					// 对象的结构赋值，取得数据中的musicData对象
 					let {musicData} = item
 					if (musicData.songid && musicData.albummid) {
 						getMusic(musicData.songmid).then(res => {
 							if (res.code === ERR_OK) {
-								 const svkey = res.data.items
-								 const songVkey = svkey[0].vkey
-								 const newSong = createSong(musicData, songVkey)
-								 ret.push(newSong)
+								// console.log(res)
+								const svkey = res.data.items
+								const songVkey = svkey[0].vkey
+								const newSong = createSong(musicData, songVkey)
+								ret.push(newSong)
 							}
 						})
 					}
 				})
+				console.log(ret)
 				return ret
 			}
 		},

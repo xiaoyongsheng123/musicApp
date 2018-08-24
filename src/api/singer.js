@@ -19,7 +19,7 @@ export function getSingerList () {
   })
   return axios.get(url, {
     params: data
-  }).then(res => {
+  }).then( res => {
     return Promise.resolve(res.data)
   })
 }

@@ -33,6 +33,7 @@
 			_getSingerList() {
 				getSingerList().then((res) => {
 					if(res.code === ERR_OK) {
+						// console.log(res.data.list)
 						this.singers = this._normalizeSinger(res.data.list)
 						// console.log(this.singers)
 					}
@@ -73,7 +74,7 @@
 					let val = map[key]
 					if (val.title.match(/[a-zA-Z]/)) {
 						ret.push(val)
-					}else if (val.title === HOT_NAME) {
+					} else if (val.title === HOT_NAME) {
 						hot.push(val)
 					}
 				}

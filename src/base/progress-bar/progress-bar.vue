@@ -1,5 +1,5 @@
 <template>
-	<div class="progress-bar" ref="progressBar" @click="progressClick">
+	<div class="progress-bar needsclick" ref="progressBar" @click="progressClick">
 		<div class="bar-inner">
 			<div class="progress" ref="progress"></div>
 			<div class="progress-btn-wrapper" ref="progressBtn"
@@ -48,7 +48,7 @@
 			},
 			progressClick(e) {
 				const rect = this.$refs.progressBar.getBoundingClientRect()
-				const offsetWidth = e.pagex - rect.left
+				const offsetWidth = e.pageX - rect.left
 				this._offset(offsetWidth)
 				// bug:点击progressBtn时,e.offsetX获取错误
 				// this._offset(e.offsetX)
@@ -77,7 +77,7 @@
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
 	@import "~common/stylus/variable"
-
+	
 	.progress-bar
 		height: 30px
 		.bar-inner
