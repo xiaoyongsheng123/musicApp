@@ -15,6 +15,7 @@ export default class Song {
 	}
 
 	getLyric() {
+		// 减少请求，优化性能
 		if (this.lyric) {
 			return Promise.resolve(this.lyric)
 		}

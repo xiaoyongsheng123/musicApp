@@ -308,7 +308,7 @@
 					if (this.playing) {
 						this.currentLyric.play()
 					}
-					console.log(this.currentLyric)
+					// console.log(this.currentLyric)
 				}).catch(() => {
 					this.currentLyric = null
 					this.playingLyric = ''

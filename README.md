@@ -33,28 +33,28 @@
 - `Promise`：异步编程的一种解决方案，在项目中的运用：
 
 ```
-	export default function jsonp(url, data, option) {
-		url += (url.indexOf('?') < 0 '?' : '&') + param(data)
-		return new Promise((resolve, reject) => {
-			originJSONP(url, option, (err, data) => {
-				if (!err) {
-					resolve(data)
-				} else {
-					reject(err)
-				}
-			})
+export default function jsonp(url, data, option) {
+	url += (url.indexOf('?') < 0 '?' : '&') + param(data)
+	return new Promise((resolve, reject) => {
+		originJSONP(url, option, (err, data) => {
+			if (!err) {
+				resolve(data)
+			} else {
+				reject(err)
+			}
 		})
-	}
+	})
+}
 ```
 
 - `Object.assign()`：用于对象的合并，将源对象的所有可枚举属性，复制到目标对象。第一个参数是目标对象，后面的参数都是源对象
 
 ```
-	const data = Object.assign({}, commonParams, {
-		platform: 'h5',
-		uin: 0,
-		needNewCode: 1
-	})
+const data = Object.assign({}, commonParams, {
+	platform: 'h5',
+	uin: 0,
+	needNewCode: 1
+})
 ```
 - `setTimeout(fn, 20)`：JS线程执行完毕后一个Tick的时间约17ms内DOM就有可以渲染完毕，所以`setTimeout(fn, 20)`是非常稳妥的写法
 
@@ -75,35 +75,35 @@
 
 - `axios`：基于promise的HTTP库，可以用在浏览器和node.js中，项目中用的最多的通过代理后端服务器获取数据的手段
 ```
-	// 歌单数据获取
-	before(app) {
-		app.get('/api/getDiscList', function(req, res) {
-			var url = "https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg"
-			axios.get(url, {
-				header: {
-					referer: 'http://y.qq.com',
-					host: 'c.y.qq.com'
-				},
-				params: req.query
-			}).then((response) => {
-				res.json(response.data)
-			}).catch((e) => {
-				console.log(e)
-			})
+// 歌单数据获取
+before(app) {
+	app.get('/api/getDiscList', function(req, res) {
+		var url = "https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg"
+		axios.get(url, {
+			header: {
+				referer: 'http://y.qq.com',
+				host: 'c.y.qq.com'
+			},
+			params: req.query
+		}).then((response) => {
+			res.json(response.data)
+		}).catch((e) => {
+			console.log(e)
 		})
-	}
+	})
+}
 
-	export function getDiscList() {
-		const url = '/api/getDiscList'
+export function getDiscList() {
+	const url = '/api/getDiscList'
 
-		const data = Object.assign()
+	const data = Object.assign()
 
-		return axios.get(url, {
-			params: data
-		}).then((res) => {
-			return Promise.resolve(res.data)
-		})
-	}
+	return axios.get(url, {
+		params: data
+	}).then((res) => {
+		return Promise.resolve(res.data)
+	})
+}
 ```
 
 - `vue-lazyload`：懒加载图片，优化用户体验
@@ -112,9 +112,9 @@
 
 - ***设置轮播宽度***：`Bscroll`设置`snapLoop`时会自动克隆两个轮播图插在前后位置，为了保证轮播图无缝切换，需要增加两个宽度；同时加入窗口变化时不再增加宽度的限制
 ```
-	if (this.loop && !isResize) {
-		width += 2*sliderWidth
-	}
+if (this.loop && !isResize) {
+	width += 2*sliderWidth
+}
 ```
 
 - ***初始化dots***：dots的数量由轮播图数量决定，因此需在设置克隆插入轮播之前进行
@@ -123,90 +123,90 @@
 
 - ***自动播放***：自定义定时器结合`goToPage()`跳转到相应的页面
 ```
-	_play() {
-		let pageIndex = this.currentPageIndex + 1
-		if (this.loop) {
-			pageIndex += 1
-		}
-		this.timer = setTimeout( ()=> {
-			this.slider.goToPage(pageIndex, 0, 400)
-		}, this.interval)
+_play() {
+	let pageIndex = this.currentPageIndex + 1
+	if (this.loop) {
+		pageIndex += 1
 	}
+	this.timer = setTimeout( ()=> {
+		this.slider.goToPage(pageIndex, 0, 400)
+	}, this.interval)
+}
 ```
 - ***清除定时器***：每次手指滑动时都应清除定时器，避免索引值的获取发生错乱；组件销毁时都应清除定时器达到释放内存的目的
 
 - ***监听窗口变化***：为了保证窗口变化时依旧能够正常轮播，应监听`resize`事件来重新渲染轮播图并计算宽度
 
 ```
-	window.addEventListener('resize', ()=> {
-		if (!this.slider) {
-			return
-		}
-		this._setSliderWidth(true)
-		this.slider.refresh()
-	})
+window.addEventListener('resize', ()=> {
+	if (!this.slider) {
+		return
+	}
+	this._setSliderWidth(true)
+	this.slider.refresh()
+})
 ```
 
 ### 歌手列表数据聚合
 
 ```
-	// 定义Singer类(相当于ES5的构造函数)创建属性，处理avatar字段
-	export default class Singer {
-		constructor({id, name}) {
-			this.id = id
-			this.name = name
-			this.avatar = `https://y.gtimg.cn/music/photo_new/T001R300x300M000${id}.jpg?max_age=2592000`
+// 定义Singer类(相当于ES5的构造函数)创建属性，处理avatar字段
+export default class Singer {
+	constructor({id, name}) {
+		this.id = id
+		this.name = name
+		this.avatar = `https://y.gtimg.cn/music/photo_new/T001R300x300M000${id}.jpg?max_age=2592000`
+	}
+}
+
+_normalizeSinger(list) {
+	let map = {
+		hot: {
+			title: HOT_NAME,
+			items: []
 		}
 	}
-
-	_normalizeSinger(list) {
-		let map = {
-			hot: {
-				title: HOT_NAME,
-				items: []
-			}
-		}
-		// 获取需要用到的数据字段
-		// 将前10条数据push到hot对象的items中
-		list.forEach((item, index) => {
-			if (index < HOT_SINGER_LEN) {
-				map.hot.items.push(new Singer({
-					id: item.Fsinger_mid,
-					name: item.Fsinger_name
-				}))
-			}
-			const key = item.Findex
-			// 创建以字母为键值的对象
-			if (!map[key]) {
-				map[key] = {
-					title: key,
-					items: []
-				}
-			}
-			// 如果存在该字母名的对象，则将数据push到该对象的items中
-			map[key].items.push(new Singer({
+	// 获取需要用到的数据字段
+	// 将前10条数据push到hot对象的items中
+	list.forEach((item, index) => {
+		if (index < HOT_SINGER_LEN) {
+			map.hot.items.push(new Singer({
 				id: item.Fsinger_mid,
 				name: item.Fsinger_name
 			}))
-		})
-		// 为了得到有序列表，需要处理map
-		let hot = []
-		let ret = []
-		for (let key in map) {
-			let val = map[key]
-			if (val.title.match(/[a-zA-Z]/)) {
-				ret.push(val)
-			} else if (val.title === HOT_NAME) {
-				hot.push(val)
+		}
+		const key = item.Findex
+		// 创建以字母为键值的对象
+		if (!map[key]) {
+			map[key] = {
+				title: key,
+				items: []
 			}
 		}
-		// 排序
-		ret.sort((a, b) = {
-			return a.title.charCodeAt(0) - b.title.charCodeAt(0)
-		})
-		// 最后拼接数组
-		return hot.concat(ret)
+		// 如果存在该字母名的对象，则将数据push到该对象的items中
+		map[key].items.push(new Singer({
+			id: item.Fsinger_mid,
+			name: item.Fsinger_name
+		}))
+	})
+	// 为了得到有序列表，需要处理map
+	let hot = []
+	let ret = []
+	for (let key in map) {
+		let val = map[key]
+		if (val.title.match(/[a-zA-Z]/)) {
+			ret.push(val)
+		} else if (val.title === HOT_NAME) {
+			hot.push(val)
+		}
 	}
+	// 排序
+	ret.sort((a, b) = {
+		return a.title.charCodeAt(0) -b.title.charCodeAt(0)
+	})
+	// 最后拼接数组
+	return hot.concat(ret)
+}
 ```
 
 ### 左右列表的联动
@@ -605,9 +605,174 @@ _pad(num, n = 2) {
 </div>
 ```
 
-- 切换播放模式
+- 切换播放模式：默认为顺序播放，用的是原歌曲列表；随机播放的原理是定义了一个洗牌函数将原歌曲列表打乱来实现
 
+```
+function getRandomInt(min, max) {
+	return Math.floor(Math.random() * (max - min + 1) + min)
+}
 
+export function shuffle(arr) {
+	// 不改变原数组
+	let _arr = arr.slice()
+	for (var i = 0; i < _arr.length; i++) {
+		let j = getRandomInt(0, i)
+		let t = _arr[i]
+		_arr[i] = _arr[j]
+		_arr[j] = t
+	}
+	return _arr
+}
+```
+bug: 切换模式时歌曲发生改变，原因是由于currentSong是由playlist和currentIndex计算而来，切换模式后列表发生变化，当前播放歌曲也会随之发生变化
+
+```
+resetCurrentIndex(list) {
+	// 获取当前播放歌曲在列表中的索引并重新设置
+	let index = list.findIndex((item) => {
+		return item.id === this.currenSong.id
+	})
+	this.setCurrentIndex(index)
+}
+
+watch: {
+	currentSong(newSong, oldSong) {
+		if (newSong.id === oldSong.id) {
+			return
+		}
+	}
+}
+```
+
+### 歌词相关
+
+- 歌词数据解析：第三方库js-base64(解码base64字符串)和lyric-parser(解析歌词，处理播放状态)
+```
+app.get('/api/lyric', function(req, res) {
+	...
+	axios.get(url, ...).then((response) => {
+		var ret = response.data
+		// 获取到的是jsonp字符串，需做正则处理
+		if (typeof ret === 'string') {
+			var reg = /^\w+\(({[^()]})\)$/
+			var matches = ret.match(reg)
+			if (matches) {
+				ret = JSON.parse(matches[1])
+			}
+		}
+		res.json(ret)
+	})
+})
+
+getLyric() {
+	this.currentSong.getLyric().then((lyric) => {
+		this.currentLyric = new Lyric(lyric, this.handleLyric)
+		if (this.playing) {
+			// 调用lyric-parser的api播放歌词
+			this.currentLyric.play()
+		}
+	}).catch(() => {
+		this.currentLyric = null
+		this.playingLyric = ''
+		this.currentLineNum = 0
+	})
+},
+// 让歌词的滚动保持居中状态
+headleLyric({lineNum, txt}) {
+	this.currentLineNum = lineNum
+	if (lineNum > 5) {
+		let lineEl = this.$refs.lyricLine[lineNum - 5]
+		this.$refs.lyriclist.scrollToElement(lineEl, 1000)
+	} else {
+		this.$refs.lyricList.scrollTo(0, 0, 1000)
+	}
+	// 展示当前播放的歌词
+	this.playingLyric = txt
+}
+```
+- 唱片和歌词滑动切换
+
+```
+// 手指滑动y的值大于x的值，则判断为歌词的滚动
+if (Math.abs(deltaY) > Math.abs(deltaX)) {
+	return
+}
+
+// 需定义一个开关来判断当前是否是滑动状态
+middleTouchStart(e) {
+	this.touch.moved = false
+}
+middleTouchMove(e) {
+	if (!this.touch.moved) {
+		this.touch.moved = true
+	}
+}
+middleTouchEnd(e) {
+	// 判断为非滑动状态，不执行后面的操作
+	if (!this.touch.moved) {
+		return
+	}
+}
+
+// lyric-parser播放歌词的原理是定义了一个定时器，当歌曲变化时，需调用它的stop()方法清除掉定时器，防止出现歌词播放的闪动的Bug
+watch: {
+	currentSong {
+		...
+		if (this.currentLyric) {
+			this.currentLyric.stop()
+		}
+		// 解决微信从后台切换到前台无法正常播放的问题
+		setTimeout(() => {
+			this.$refs.audio.play()
+			this.getLyric()
+		}, 1000)
+	}
+}
+
+```
+
+### 迷你播放器自适应
+
+- 混入(mixins): 分发Vue组件中可复用功能的方式
+```
+// mixin.js
+import {mapGetters} from 'vuex'
+
+export const playlistMixin = {
+	computed: {
+		...mapGetters([
+			'playlist'
+		])
+	},
+	mouted() {
+		this.handlePlaylist(this.playlist)
+	},
+	activated() {
+		this.handlePlaylist(this.playlist)
+	}
+	watch: {
+		playlist(newVal) {
+			this.handlePlaylist(newVal)
+		}
+	},
+	methods: {
+		// 在组件中定义覆盖该函数，不然则报错
+		handlePlaylist() {
+			throw new Error('...')
+		}
+	}
+}
+
+// music-list.vue
+import {playlistMixin} from 'common/js/mixin'
+methods: {
+	handlePlaylist(playlist) {
+		const bottom = playlist.length > 0 ? '60px' : ''
+		this.$refs.list.$el.style.bottom = bottom
+		this.$refs.list.refresh()
+	}
+}
+```
 
 ## Build Setup
 
