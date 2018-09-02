@@ -12,3 +12,19 @@ export function shuffle(arr) {
 	}
 	return _arr
 }
+
+
+
+// 减少请求的发生，达到节流的效果
+export function debounce(func, delay) {
+	let timer
+
+	return function (...args) {
+		if (timer) {
+			clearTimeout(timer)
+		}
+		timer = setTimeout(() => {
+			func.apply(this, args)
+		}, delay)
+	}
+}

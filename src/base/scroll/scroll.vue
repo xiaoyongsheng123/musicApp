@@ -23,6 +23,14 @@
 			listenScroll: {
 				type: Boolean,
 				default: false
+			},
+			pullup: {
+				type: Boolean,
+				default: false
+			},
+			beforeScroll: {
+				type: Boolean,
+				default: false
 			}
 		},
 		mounted() {
@@ -32,7 +40,7 @@
 		},
 		methods: {
 			_initScroll() {
-				if(!this.$refs.wrapper) {
+				if (!this.$refs.wrapper) {
 					return
 				}
 				this.scroll = new BScroll(this.$refs.wrapper, {
@@ -40,12 +48,26 @@
 					click: this.click
 				})
 
-				if(this.listenScroll) {
+				if (this.listenScroll) {
 					// 记录当前实例对象
 					let me = this
 					// 当滑动开始时给父组件派发scroll事件并传入滑动的xy坐标值
 					this.scroll.on('scroll', (pos) => {
 						me.$emit('scroll', pos)
+					})
+				}
+
+				if (this.pullup) {
+					this.scroll.on('scrollEnd', () => {
+						if (this.scroll.y <= this.scroll.maxScrollY + 70) {
+							this.$emit('scrollToEnd')
+						}
+					})
+				}
+
+				if (this.beforeScroll) {
+					this.scroll.on('beforeScrollStart', () => {
+						this.$emit('beforeScroll')
 					})
 				}
 			},

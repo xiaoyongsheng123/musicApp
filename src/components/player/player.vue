@@ -93,7 +93,7 @@
 				</div>
 			</div>
 		</transition>
-		<audio ref="audio" :src="currentSong.url" @canplay="ready" @error="error" @timeupdate="updateTime" @ended="end"></audio>
+		<audio ref="audio" :src="currentSong.url" @play="ready" @error="error" @timeupdate="updateTime" @ended="end"></audio>
 	</div>
 </template>
 <script type="text/ecmascript-6">
@@ -215,6 +215,7 @@
 				}
 				if (this.playlist.length === 1) {
 					this.loop()
+					return
 				} else {
 					let index = this.currentIndex + 1
 					if (index === this.playlist.length) {
@@ -247,6 +248,7 @@
 				}
 				if (this.playlist.length === 1) {
 					this.loop()
+					return
 				} else {
 					let index = this.currentIndex - 1
 					if (index === -1) {
@@ -304,6 +306,10 @@
 			},
 			getLyric() {
 				this.currentSong.getLyric().then((lyric) => {
+					// 解决切换歌曲时由于代码的异步执行而导致歌词获取错误的bug
+					if (this.currentSong.lyric !== lyric) {
+						return
+					}
 					this.currentLyric = new Lyric(lyric, this.handleLyric)
 					if (this.playing) {
 						this.currentLyric.play()
@@ -424,8 +430,13 @@
 				}
 				if (this.currentLyric) {
 					this.currentLyric.stop()
+					this.currentTime = 0
+					this.playingLyric = ''
+					this.currentLineNum = 0
 				}
-				setTimeout(() => {
+				// 解决快速切换后暂停歌曲仍然会继续播放的bug：清除之前的定时器操作，只执行最后一次的代码
+				clearTimeout(this.timer)
+				this.timer = setTimeout(() => {
 					this.$refs.audio.play()
 					this.getLyric()
 				}, 1000)
