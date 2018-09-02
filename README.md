@@ -13,6 +13,15 @@
 
 ## 项目截图
 
+<div align=center>
+  <img src="https://github.com/xiaoyongsheng123/musicApp/blob/master/img/1.gif" width="30%">
+  <img src="https://github.com/xiaoyongsheng123/musicApp/blob/master/img/2.gif" width="30%">
+  <img src="https://github.com/xiaoyongsheng123/musicApp/blob/master/img/3.gif" width="30%">
+  <img src="https://github.com/xiaoyongsheng123/musicApp/blob/master/img/4.gif" width="30%">
+  <img src="https://github.com/xiaoyongsheng123/musicApp/blob/master/img/5.gif" width="30%">
+  <img src="https://github.com/xiaoyongsheng123/musicApp/blob/master/img/6.gif" width="30%">
+</div>
+
 ## 主要技术栈
 
 - `Vue.js`(版本2.x)：`MVVM`框架
