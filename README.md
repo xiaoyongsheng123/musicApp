@@ -38,6 +38,45 @@
   <img src="https://github.com/xiaoyongsheng123/musicApp/blob/master/img/7.png">
 </div>
 
+```
+—— App.vue 入口组件
+  |—— m-header.vue 头部组件
+  |—— tab.vue tab栏组件
+    |—— recommend.vue 推荐页组件
+      |—— disc.vue 歌单详情组件
+        |—— music-list.vue 歌曲详情组件
+            |——song-list.vue 歌曲列表组件
+      |—— slider.vue 轮播图组件
+      |—— scroll 滚动组件
+      |—— loading.vue 加载图标组件
+    |—— singer.vue 歌手页组件
+      |—— listview.vue 歌手列表组件
+        |—— singer-detail.vue 歌手详情组件
+          |—— music-list.vue 歌曲详情组件
+            |——song-list.vue 歌曲列表组件
+        |—— scroll.vue
+        |—— loading.vue
+    |—— rank.vue 排行榜页组件
+      |—— top-list.vue 排行榜详情组件
+        |—— music-list.vue 歌曲详情组件
+            |——song-list.vue 歌曲列表组件
+      |—— scroll.vue
+      |—— loading.vue
+    |—— search.vue 搜索页组件
+      |—— search-box.vue 搜索框组件
+      |—— suggest.vue 搜索内容组件
+        |—— scroll.vue
+        |—— loading.vue
+        |—— no-result.vue 无结果提示组件
+      |—— search-list.vue 历史搜索组件
+      |—— confirm.vue 弹窗组件
+      |—— scroll.vue
+  |—— play.vue 播放器组件
+    |—— progress-bar.vue 进度条组件
+    |—— progress-circle.vue 圆形进度条组件
+    |—— scroll.vue
+```
+
 ## 要点总结
 
 - 内容较多，在此另开一篇文章 <a href="https://blog.csdn.net/xys666/article/details/82349957" target="_blank">https://blog.csdn.net/xys666/article/details/82349957</a>
