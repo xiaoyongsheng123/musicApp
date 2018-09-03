@@ -34,6 +34,10 @@
 
 ## 组件关系图
 
+<div>
+  <img src="https://github.com/xiaoyongsheng123/musicApp/blob/master/img/07.png">
+</div>
+
 ## 要点总结
 
 - 内容较多，在此另开一篇文章 <a href="https://blog.csdn.net/xys666/article/details/82349957" target="_blank">https://blog.csdn.net/xys666/article/details/82349957</a>
