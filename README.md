@@ -84,7 +84,11 @@
 ## Build Setup
 
 ``` bash
+# clone project
+git clone git@github.com:xiaoyongsheng123/musicApp.git
+
 # install dependencies
+cd musicApp
 npm install
 
 # serve with hot reload at localhost:8080
