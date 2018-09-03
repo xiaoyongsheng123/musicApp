@@ -35,7 +35,7 @@
 ## 组件关系图
 
 <div>
-  <img src="https://github.com/xiaoyongsheng123/musicApp/blob/master/img/07.png">
+  <img src="https://github.com/xiaoyongsheng123/musicApp/blob/master/img/7.png">
 </div>
 
 ## 要点总结
